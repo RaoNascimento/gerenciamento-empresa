@@ -29,9 +29,9 @@ public class EmpresaController implements SwaggerEmpresaController {
 
 		var empresa = EmpresaMapper.INSTANCE.TransitoriaContabilInputDTOToTransitorioContabil(empresaInputDto);
 		var response = EmpresaMapper.INSTANCE.transitoriaContabilToTransitoriaContabilInputDTO(empresaUseCase.cadastraArquivoTaje(empresa));
-		var rootTajePersistenceDto = new RootEmpresaDTO(response, "200");
+		var rootEmpresaDto = new RootEmpresaDTO(response, "200");
 
-		return ResponseEntity.status(HttpStatus.CREATED).body(rootTajePersistenceDto);
+		return ResponseEntity.status(HttpStatus.CREATED).body(rootEmpresaDto);
 	}
 
 

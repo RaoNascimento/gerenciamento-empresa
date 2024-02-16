@@ -1,4 +1,4 @@
-# TAJE - PERSISTENCE - API
+# STRELLA - EMPRESAS - API
 ***
 
 ## Como subir a aplicação?
