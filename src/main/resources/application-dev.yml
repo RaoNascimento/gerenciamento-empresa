@@ -1,0 +1,41 @@
+spring:
+    main:
+        allow-bean-definition-overriding: true
+        compression:
+            enabled: true
+            mime-types: application/json,application/xml
+            min-response-size: 1024
+    mvc:
+        pathmatch:
+            matching-strategy: ant_path_matcher
+    datasource:
+        url:  ${ENV_SRV_TAJE_PERSISTENCE_DATABASE_URL:jdbc:mysql://localhost:3306/taje_persistence?serverTimezone=UTC}
+        username: root
+        password: root
+        driverClassName: com.mysql.cj.jdbc.Driver
+    jpa:
+        show-sql: true
+        database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+        hibernate:
+            ddl-auto: create
+            naming:
+                physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        defer-datasource-initialization: true
+        properties:
+            hibernate:
+                default_schema: TabelaProvisoria
+feign:
+    httpclient:
+        enabled: true
+        disableSslValidation: true
+    client:
+        loadbalancer:
+            enabled: false
+        config:
+            default:
+                connectTimeout: 10000
+                readTimeout: 10000
+                loggerLevel: basic
+
+server:
+    port: 8081
