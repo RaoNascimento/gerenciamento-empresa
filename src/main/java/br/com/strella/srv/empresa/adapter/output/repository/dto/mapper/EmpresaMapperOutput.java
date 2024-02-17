@@ -8,6 +8,6 @@ import org.mapstruct.factory.Mappers;
 public interface EmpresaMapperOutput {
 	EmpresaMapperOutput INSTANCE = Mappers.getMapper(EmpresaMapperOutput.class);
 
-	EmpresaOutputDTO transitoriaContabilToTransitoriaContabilOutputDTO(Empresa empresa);
-	Empresa TransitoriaContabilOutputDTOToTransitoriaContabil(EmpresaOutputDTO empresaOutputDTO);
+	EmpresaOutputDTO empresaToEmpresaOutputDTO(Empresa empresa);
+	Empresa empresaOutputDTOToEmpresa(EmpresaOutputDTO empresaOutputDTO);
 }

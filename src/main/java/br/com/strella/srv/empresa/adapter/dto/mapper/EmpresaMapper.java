@@ -10,8 +10,8 @@ public interface EmpresaMapper {
 
 	EmpresaMapper INSTANCE = Mappers.getMapper(EmpresaMapper.class);
 
-	EmpresaInputDTO transitoriaContabilToTransitoriaContabilInputDTO(Empresa empresa);
-	Empresa TransitoriaContabilInputDTOToTransitorioContabil(EmpresaInputDTO empresaInputDTO);
+	EmpresaInputDTO empresaToEmpresaInputDTO(Empresa empresa);
+	Empresa empresaInputDTOToEmpresa(EmpresaInputDTO empresaInputDTO);
 
 
 }

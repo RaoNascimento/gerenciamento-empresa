@@ -12,7 +12,7 @@ public class EmpresaUseCase implements IEmpresa {
 	}
 
 	@Override
-	public Empresa cadastraArquivoTaje(Empresa empresa) {
+	public Empresa cadastrarEmpresa(Empresa empresa) {
 
 		return empresaAdapter.cadastraArquivo(empresa);
 

@@ -16,12 +16,10 @@ public class EmpresaAdapter implements IEmpresaPort {
 	@Override
 	public Empresa cadastraArquivo(Empresa empresa) {
 
-		EmpresaOutputDTO empresaOutputDTO = EmpresaMapperOutput.INSTANCE
-			.transitoriaContabilToTransitoriaContabilOutputDTO(empresa);
+		EmpresaOutputDTO empresaOutputDTO = EmpresaMapperOutput.INSTANCE.empresaToEmpresaOutputDTO(empresa);
 
 		empresaRepository.save(empresaOutputDTO);
 
-		return EmpresaMapperOutput.INSTANCE
-			.TransitoriaContabilOutputDTOToTransitoriaContabil(empresaOutputDTO) ;
+		return EmpresaMapperOutput.INSTANCE.empresaOutputDTOToEmpresa(empresaOutputDTO) ;
 	}
 }
