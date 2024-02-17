@@ -6,7 +6,6 @@ import br.com.strella.srv.empresa.adapter.dto.mapper.EmpresaMapper;
 import br.com.strella.srv.empresa.adapter.input.rest.dto.EmpresaInputDTO;
 import br.com.strella.srv.empresa.adapter.input.rest.dto.RootEmpresaDTO;
 import br.com.strella.srv.empresa.port.input.IEmpresa;
-import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +26,7 @@ public class EmpresaController implements SwaggerEmpresaController {
 
 
 	@PostMapping(value = "/", produces = APPLICATION_JSON_VALUE)
-	public ResponseEntity<RootEmpresaDTO> cadastrarEmpresa(@Valid @RequestBody EmpresaInputDTO empresaInputDto) throws Exception {
+	public ResponseEntity<RootEmpresaDTO> cadastrarEmpresa(@RequestBody EmpresaInputDTO empresaInputDto) throws Exception {
 
 		var empresa = EmpresaMapper.INSTANCE.empresaInputDTOToEmpresa(empresaInputDto);
 		var response = EmpresaMapper.INSTANCE.empresaToEmpresaInputDTO(empresaUseCase.cadastrarEmpresa(empresa));

@@ -9,7 +9,7 @@ spring:
         pathmatch:
             matching-strategy: ant_path_matcher
     datasource:
-        url:  ${ENV_SRV_TAJE_PERSISTENCE_DATABASE_URL:jdbc:mysql://localhost:3306/taje_persistence?serverTimezone=UTC}
+        url:  ${ENV_SRV_TAJE_PERSISTENCE_DATABASE_URL:jdbc:mysql://localhost:3306/strellaempresa?serverTimezone=UTC}
         username: root
         password: root
         driverClassName: com.mysql.cj.jdbc.Driver
@@ -23,7 +23,7 @@ spring:
         defer-datasource-initialization: true
         properties:
             hibernate:
-                default_schema: TabelaProvisoria
+                default_schema: Strellaempresa
 feign:
     httpclient:
         enabled: true

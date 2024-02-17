@@ -83,4 +83,14 @@ public class EmpresaOutputDTO implements Serializable {
 	public void setIdLogo(Long idLogo) {
 		this.idLogo = idLogo;
 	}
+
+	public EmpresaOutputDTO(Long id, String urlAcesso, String usuUltAlteracao,
+		LocalDate dataAtualizacao, Long idPlanoEmpresa, Long idLogo) {
+		this.id = id;
+		this.urlAcesso = urlAcesso;
+		this.usuUltAlteracao = usuUltAlteracao;
+		this.dataAtualizacao = dataAtualizacao;
+		this.idPlanoEmpresa = idPlanoEmpresa;
+		this.idLogo = idLogo;
+	}
 }

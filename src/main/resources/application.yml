@@ -3,7 +3,7 @@ logging:
 
 spring:
  profiles:
-  active: ${APP_PROFILE:dev}
+  active: ${APP_PROFILE:local}
 
 management:
  endpoints:
