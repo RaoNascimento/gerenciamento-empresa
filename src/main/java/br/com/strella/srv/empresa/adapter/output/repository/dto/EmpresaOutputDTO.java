@@ -19,20 +19,19 @@ public class EmpresaOutputDTO implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Long id;
-	@JsonProperty("url_acesso")
+	@JsonProperty("urlAcesso")
 	@Column(name = "url_acesso")
 	private String urlAcesso;
-	@JsonProperty("usu_ult_alteracao")
+	@JsonProperty("usuUltAlteracao")
 	@Column(name = "usu_ult_alteracao")
 	private String usuUltAlteracao;
-
-	@JsonProperty("data_atualizacao")
+	@JsonProperty("dataAtualizacao")
 	@Column(name = "data_atualizacao")
 	private LocalDate dataAtualizacao;
-	@JsonProperty("id_plano_empresa")
+	@JsonProperty("idPlanoEmpresa")
 	@Column(name = "id_plano_empresa")
 	private Long idPlanoEmpresa;
-	@JsonProperty("id_logo")
+	@JsonProperty("idLogo")
 	@Column(name = "id_logo")
 	private Long idLogo;
 
@@ -93,4 +92,6 @@ public class EmpresaOutputDTO implements Serializable {
 		this.idPlanoEmpresa = idPlanoEmpresa;
 		this.idLogo = idLogo;
 	}
+
+	public EmpresaOutputDTO() {}
 }

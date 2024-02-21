@@ -3,25 +3,21 @@ package br.com.strella.srv.empresa.domain.entity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 import java.time.LocalDate;
+import net.bytebuddy.implementation.bind.annotation.Default;
 
 
 public class Empresa implements Serializable {
 
 	private Long id;
 
-	@JsonProperty("url_acesso")
 	private String urlAcesso;
 
-	@JsonProperty("usu_ult_alteracao")
 	private String usuUltAlteracao;
 
-	@JsonProperty("data_atualizacao")
 	private LocalDate dataAtualizacao;
 
-	@JsonProperty("id_plano_empresa")
 	private Long idPlanoEmpresa;
 
-	@JsonProperty("id_logo")
 	private Long idLogo;
 
 	public Long getId() {
@@ -72,12 +68,19 @@ public class Empresa implements Serializable {
 		this.idLogo = idLogo;
 	}
 
-	public Empresa(Long id, String urlAcesso, String usuUltAlteracao, LocalDate dataAtualizacao,
-		Long idPlanoEmpresa, Long idLogo) {
+//	public Empresa(Long id, String urlAcesso, String usuUltAlteracao, LocalDate dataAtualizacao,
+//		Long idPlanoEmpresa, Long idLogo) {
+//		this.id = id;
+//		this.urlAcesso = urlAcesso;
+//		this.usuUltAlteracao = usuUltAlteracao;
+//		this.dataAtualizacao = dataAtualizacao;
+//		this.idPlanoEmpresa = idPlanoEmpresa;
+//		this.idLogo = idLogo;
+//	}
+
+	public Empresa(Long id, String urlAcesso, Long idPlanoEmpresa, Long idLogo) {
 		this.id = id;
 		this.urlAcesso = urlAcesso;
-		this.usuUltAlteracao = usuUltAlteracao;
-		this.dataAtualizacao = dataAtualizacao;
 		this.idPlanoEmpresa = idPlanoEmpresa;
 		this.idLogo = idLogo;
 	}

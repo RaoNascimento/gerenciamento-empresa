@@ -4,21 +4,22 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.LocalDate;
 
 public class EmpresaInputDTO {
+	@JsonProperty("id")
 	private Long id;
 
-	@JsonProperty("url_acesso")
+	@JsonProperty("urlAcesso")
 	private String urlAcesso;
 
-	@JsonProperty("usu_ult_alteracao")
+	@JsonProperty("usuUltAlteracao")
 	private String usuUltAlteracao;
 
-	@JsonProperty("data_atualizacao")
+	@JsonProperty("dataAtualizacao")
 	private LocalDate dataAtualizacao;
 
-	@JsonProperty("id_plano_empresa")
+	@JsonProperty("idPlanoEmpresa")
 	private Long idPlanoEmpresa;
 
-	@JsonProperty("id_logo")
+	@JsonProperty("idLogo")
 	private Long idLogo;
 
 	public Long getId() {
@@ -66,6 +67,16 @@ public class EmpresaInputDTO {
 	}
 
 	public void setIdLogo(Long idLogo) {
+		this.idLogo = idLogo;
+	}
+
+	public EmpresaInputDTO(Long id, String urlAcesso, String usuUltAlteracao, LocalDate dataAtualizacao,
+		Long idPlanoEmpresa, Long idLogo) {
+		this.id = id;
+		this.urlAcesso = urlAcesso;
+		this.usuUltAlteracao = usuUltAlteracao;
+		this.dataAtualizacao = dataAtualizacao;
+		this.idPlanoEmpresa = idPlanoEmpresa;
 		this.idLogo = idLogo;
 	}
 }

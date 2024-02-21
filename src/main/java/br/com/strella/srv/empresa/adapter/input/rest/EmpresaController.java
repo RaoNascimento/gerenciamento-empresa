@@ -1,21 +1,26 @@
 package br.com.strella.srv.empresa.adapter.input.rest;
 
+import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 import br.com.strella.srv.empresa.adapter.dto.mapper.EmpresaMapper;
 import br.com.strella.srv.empresa.adapter.input.rest.dto.EmpresaInputDTO;
 import br.com.strella.srv.empresa.adapter.input.rest.dto.RootEmpresaDTO;
 import br.com.strella.srv.empresa.port.input.IEmpresa;
+import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("v1/strella-empresa")
+@RequestMapping("v1/")
 public class EmpresaController implements SwaggerEmpresaController {
 	@Autowired
 	private final IEmpresa empresaUseCase;
@@ -25,15 +30,31 @@ public class EmpresaController implements SwaggerEmpresaController {
 	}
 
 
-	@PostMapping(value = "/", produces = APPLICATION_JSON_VALUE)
-	public ResponseEntity<RootEmpresaDTO> cadastrarEmpresa(@RequestBody EmpresaInputDTO empresaInputDto) throws Exception {
+	@PostMapping(value = "/strella-empresa", produces = APPLICATION_JSON_VALUE)
+	public ResponseEntity<RootEmpresaDTO> cadastrar(@RequestBody EmpresaInputDTO empresaInputDto) throws Exception {
 
 		var empresa = EmpresaMapper.INSTANCE.empresaInputDTOToEmpresa(empresaInputDto);
 		var response = EmpresaMapper.INSTANCE.empresaToEmpresaInputDTO(empresaUseCase.cadastrarEmpresa(empresa));
-		var rootEmpresaDto = new RootEmpresaDTO(response, "200");
+		var rootEmpresaDto = new RootEmpresaDTO(Arrays.asList(response), HttpStatus.CREATED);
 
 		return ResponseEntity.status(HttpStatus.CREATED).body(rootEmpresaDto);
 	}
 
+	@GetMapping(value = "/strella-empresa", produces = APPLICATION_JSON_VALUE)
+	public ResponseEntity<RootEmpresaDTO> listarPorParametros(
+		@RequestParam(name = "id", required = false) Long id,
+		@RequestParam(name = "idLogo", required = false) Long idLogo,
+		@RequestParam(name = "urlAcesso", required = false) String urlAcesso,
+		@RequestParam(name = "idPlanoEmpresa", required = false) Long idPlanoEmpresa,
+		@RequestParam(name = "page", required = false, defaultValue = "0") int page,
+		@RequestParam(name = "size", required = false, defaultValue = "10") int size) {
 
+		var retornoConsulta = empresaUseCase.listarEmpresasViaFiltro(id, idLogo, urlAcesso,
+			idPlanoEmpresa, PageRequest.of(page, size));
+
+		var response = new RootEmpresaDTO(EmpresaMapper.INSTANCE.listEmpresaToEmpresaInputDTO(retornoConsulta), OK);
+
+		return ResponseEntity.status(OK).body(response);
+
+	}
 }

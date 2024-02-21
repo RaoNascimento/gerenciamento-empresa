@@ -2,6 +2,7 @@ package br.com.strella.srv.empresa.config;
 
 import br.com.strella.srv.empresa.adapter.output.repository.EmpresaAdapter;
 import br.com.strella.srv.empresa.adapter.output.repository.EmpresaRepository;
+import br.com.strella.srv.empresa.adapter.output.repository.EmpresaSpecification;
 import br.com.strella.srv.empresa.domain.usecase.EmpresaUseCase;
 import br.com.strella.srv.empresa.port.input.IEmpresa;
 import br.com.strella.srv.empresa.port.output.IEmpresaPort;
@@ -15,12 +16,12 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
 @Bean("IEmpresaPort")
 @ApplicationScope
-IEmpresaPort getTajePesistenceAdapter(EmpresaRepository empresaRepository){
-		return new EmpresaAdapter(empresaRepository);
+IEmpresaPort getEmpresaAdapter(EmpresaRepository empresaRepository, EmpresaSpecification empresaSpecification){
+		return new EmpresaAdapter(empresaRepository, empresaSpecification);
 	}
 @Bean("IEmpresa")
 	@ApplicationScope
-IEmpresa getTajePersistenceUseCase(IEmpresaPort empresaAdapter){
+IEmpresa getEmpresaUseCase(IEmpresaPort empresaAdapter){
 	return new EmpresaUseCase(empresaAdapter);
 }
 

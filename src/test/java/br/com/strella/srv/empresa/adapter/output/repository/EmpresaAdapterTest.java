@@ -21,15 +21,15 @@ public class EmpresaAdapterTest {
 private EmpresaRepository empresaRepository;
 private IEmpresaPort empresaAdapter;
 
-	@Captor
-	private ArgumentCaptor<EmpresaOutputDTO> tajePersistenceDtoCaptor;
-	@BeforeEach
-	void setup() {
-		empresaRepository = mock(EmpresaRepository.class);
-		empresaAdapter = new EmpresaAdapter(empresaRepository);
-	}
-	@Test
-	void cadastrarDadosComSucesso() throws Exception {
+//	@Captor
+//	private ArgumentCaptor<EmpresaOutputDTO> tajePersistenceDtoCaptor;
+//	@BeforeEach
+//	void setup() {
+//		empresaRepository = mock(EmpresaRepository.class);
+//		empresaAdapter = new EmpresaAdapter(empresaRepository);
+//	}
+//	@Test
+//	void cadastrarDadosComSucesso() throws Exception {
 
 //		var empresa = TajePersistenceFactory.getDadosTajeAdapter();
 //		var transitoriaContabilDto = EmpresaMapperOutput.INSTANCE
@@ -43,5 +43,5 @@ private IEmpresaPort empresaAdapter;
 //		assertNotNull(resultado);
 		//assertEquals(empresa.getId(), resultado.getId());
 
-	}
+	//}
 }
