@@ -4,31 +4,33 @@ import br.com.strella.srv.empresa.adapter.output.repository.dto.EmpresaOutputDTO
 import br.com.strella.srv.empresa.adapter.output.repository.dto.mapper.EmpresaMapperOutput;
 import br.com.strella.srv.empresa.domain.entity.Empresa;
 import br.com.strella.srv.empresa.port.output.IEmpresaPort;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import org.springframework.data.domain.PageRequest;
+import org.hibernate.Hibernate;
+import org.hibernate.HibernateException;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 
 public class EmpresaAdapter implements IEmpresaPort {
-
 	private final EmpresaRepository empresaRepository;
 	private EmpresaSpecification empresaSpecification;
 
 	public EmpresaAdapter(EmpresaRepository empresaRepository, EmpresaSpecification empresaSpecification) {
-
 		this.empresaRepository = empresaRepository;
 		this.empresaSpecification = empresaSpecification;
 	}
 
 	@Override
-	public Empresa cadastraArquivo(Empresa empresa) {
-
+	public Empresa cadastrarEmpresa(Empresa empresa) {
 		EmpresaOutputDTO empresaOutputDTO = EmpresaMapperOutput.INSTANCE.empresaToEmpresaOutputDTO(empresa);
 		empresaRepository.save(empresaOutputDTO);
 
 		return EmpresaMapperOutput.INSTANCE.empresaOutputDTOToEmpresa(empresaOutputDTO) ;
+	}
+
+	@Override
+	public Empresa editarEmpresa(Empresa empresa) {
+		EmpresaOutputDTO empresaOutputDTO = EmpresaMapperOutput.INSTANCE.empresaToEmpresaOutputDTO(empresa);
+
+		return EmpresaMapperOutput.INSTANCE.empresaOutputDTOToEmpresa(empresaRepository.save(empresaOutputDTO));
 	}
 
 	@Override
@@ -38,4 +40,18 @@ public class EmpresaAdapter implements IEmpresaPort {
 
 		return  EmpresaMapperOutput.INSTANCE.listEmpresaOutputDTOToEmpresa(lista);
 	}
+
+	@Override
+	public void deletarEmpresa(Empresa empresa) throws Exception {
+		try {
+			EmpresaOutputDTO empresaOutputDTO = EmpresaMapperOutput.INSTANCE.empresaToEmpresaOutputDTO(empresa);
+			empresaRepository.delete(empresaOutputDTO);
+		} catch (HibernateException exception) {
+			throw new Exception();
+		}
+
+
+	}
+
+
 }

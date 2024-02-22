@@ -1,6 +1,5 @@
 package br.com.strella.srv.empresa.domain.usecase;
 
-import br.com.strella.srv.empresa.adapter.output.repository.EmpresaSpecification;
 import br.com.strella.srv.empresa.domain.entity.Empresa;
 import br.com.strella.srv.empresa.port.input.IEmpresa;
 import br.com.strella.srv.empresa.port.output.IEmpresaPort;
@@ -20,8 +19,11 @@ public class EmpresaUseCase implements IEmpresa {
 	public Empresa cadastrarEmpresa(Empresa empresa) {
 		empresa.setDataAtualizacao(LocalDate.now());
 
-		return empresaAdapter.cadastraArquivo(empresa);
+		return empresaAdapter.cadastrarEmpresa(empresa);
 
+	}
+	public Empresa editarEmpresa(Empresa empresa){
+		return empresaAdapter.editarEmpresa(empresa);
 	}
 	@Override
 	public List<Empresa> listarEmpresasViaFiltro(Long id, Long idLogo, String urlAcesso, Long idPlanoEmpresa, Pageable pageable){
@@ -32,5 +34,14 @@ public class EmpresaUseCase implements IEmpresa {
 			Objects.isNull(idLogo) ? null : idLogo);
 
 		return this.empresaAdapter.listarEmpresas(filtrosSelecionados, pageable);
+	}
+
+	@Override
+	public void deletarEmpresa(Empresa empresa) {
+		try {
+			empresaAdapter.deletarEmpresa(empresa);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 	}
 }

@@ -2,6 +2,8 @@ package br.com.strella.srv.empresa.adapter.input.rest.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.LocalDate;
+import net.bytebuddy.implementation.bind.annotation.Default;
+import org.mapstruct.Named;
 
 public class EmpresaInputDTO {
 	@JsonProperty("id")
@@ -79,4 +81,7 @@ public class EmpresaInputDTO {
 		this.idPlanoEmpresa = idPlanoEmpresa;
 		this.idLogo = idLogo;
 	}
+	public EmpresaInputDTO() {
+	}
+
 }

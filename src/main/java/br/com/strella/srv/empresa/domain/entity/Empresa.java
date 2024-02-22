@@ -84,5 +84,12 @@ public class Empresa implements Serializable {
 		this.idPlanoEmpresa = idPlanoEmpresa;
 		this.idLogo = idLogo;
 	}
+	public Empresa(Long id){
+		this.id = id;
+	}
+
+	public Empresa() {
+
+	}
 }
 

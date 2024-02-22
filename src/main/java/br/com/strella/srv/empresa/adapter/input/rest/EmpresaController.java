@@ -12,8 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,7 +30,6 @@ public class EmpresaController implements SwaggerEmpresaController {
 	public EmpresaController(IEmpresa empresaUseCase) {
 		this.empresaUseCase = empresaUseCase;
 	}
-
 
 	@PostMapping(value = "/strella-empresa", produces = APPLICATION_JSON_VALUE)
 	public ResponseEntity<RootEmpresaDTO> cadastrar(@RequestBody EmpresaInputDTO empresaInputDto) throws Exception {
@@ -56,5 +57,27 @@ public class EmpresaController implements SwaggerEmpresaController {
 
 		return ResponseEntity.status(OK).body(response);
 
+	}
+
+	@PutMapping(value = "/strella-empresa", produces = APPLICATION_JSON_VALUE)
+	public ResponseEntity<RootEmpresaDTO> editarEmpresa(@RequestBody EmpresaInputDTO empresaInputDto){
+		var empresa = EmpresaMapper.INSTANCE.empresaInputDTOToEmpresa(empresaInputDto);
+		var retornoConsulta = empresaUseCase.editarEmpresa(empresa);
+
+		var response = EmpresaMapper.INSTANCE.empresaToEmpresaInputDTO(retornoConsulta);
+		var rootEmpresa = new RootEmpresaDTO(Arrays.asList(response), HttpStatus.CREATED);
+
+		return ResponseEntity.status(HttpStatus.CREATED).body(rootEmpresa);
+	}
+
+	@DeleteMapping(value = "/strella-empresa", produces = APPLICATION_JSON_VALUE)
+	public ResponseEntity<RootEmpresaDTO>deletarEmpresa(@RequestParam(name = "id", required = true) Long id){
+		EmpresaInputDTO empresaInputDTO = new EmpresaInputDTO();
+		empresaInputDTO.setId(id);
+
+		empresaUseCase.deletarEmpresa(EmpresaMapper.INSTANCE.empresaInputDTOToEmpresa(empresaInputDTO));
+
+		var rootEmpresa = new RootEmpresaDTO(empresaInputDTO.getId(), OK);
+		return ResponseEntity.ok().body(rootEmpresa);
 	}
 }

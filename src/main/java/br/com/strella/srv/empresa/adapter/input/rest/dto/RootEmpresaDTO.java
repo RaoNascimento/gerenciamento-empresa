@@ -9,18 +9,21 @@ public class RootEmpresaDTO {
 	@JsonProperty("codigo retorno")
 	private HttpStatus codigoRetorno;
 
-//	@JsonProperty("dados")
-//	private EmpresaInputDTO empresaInputDTO;
+	@JsonProperty("id")
+	private Long id;
+
+
 	@JsonProperty("dados")
 	private List<EmpresaInputDTO> empresaInputDTOList;
 
-//	public RootEmpresaDTO(EmpresaInputDTO empresaInputDTO, String codigoRetorno){
-//	this.codigoRetorno = codigoRetorno;
-//	this.empresaInputDTO = empresaInputDTO;
-//	}
 	public RootEmpresaDTO(List<EmpresaInputDTO> empresaInputDTOList, HttpStatus codigoRetorno){
 		this.codigoRetorno = codigoRetorno;
 		this.empresaInputDTOList = empresaInputDTOList;
+	}
+
+	public RootEmpresaDTO(Long id, HttpStatus codigoRetorno ) {
+		this.id = id;
+		this.codigoRetorno = codigoRetorno;
 	}
 
 	public HttpStatus getCodigoRetorno() {
@@ -31,14 +34,13 @@ public class RootEmpresaDTO {
 		this.codigoRetorno = codigoRetorno;
 	}
 
-//	public EmpresaInputDTO getEmpresaInputDTO() {
-//		return empresaInputDTO;
-//	}
-//
-//	public void setEmpresaInputDTO(
-//		EmpresaInputDTO empresaInputDTO) {
-//		this.empresaInputDTO = empresaInputDTO;
-//	}
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public List<EmpresaInputDTO> getEmpresaInputDTOList() {
 		return empresaInputDTOList;
@@ -47,5 +49,8 @@ public class RootEmpresaDTO {
 	public void setEmpresaInputDTOList(
 		List<EmpresaInputDTO> empresaInputDTOList) {
 		this.empresaInputDTOList = empresaInputDTOList;
+	}
+	public RootEmpresaDTO(final Long id){
+		this.id = id;
 	}
 }
