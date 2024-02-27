@@ -40,6 +40,7 @@ public class EmpresaUseCase implements IEmpresa {
 	public void deletarEmpresa(Empresa empresa) {
 		try {
 			empresaAdapter.deletarEmpresa(empresa);
+
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}

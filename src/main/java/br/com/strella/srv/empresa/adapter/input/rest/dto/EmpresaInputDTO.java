@@ -84,4 +84,20 @@ public class EmpresaInputDTO {
 	public EmpresaInputDTO() {
 	}
 
+	public static class Builder {
+		private final EmpresaInputDTO internal;
+
+		public Builder() {
+			internal = new EmpresaInputDTO();
+		}
+		public Builder withId(Long id) {
+			this.internal.id = id;
+			return this;
+		}
+		public EmpresaInputDTO createEmpresaInputDTO(){
+			final var empresa = new EmpresaInputDTO();
+			empresa.setId(internal.id);
+			return empresa;
+		}
+	}
 }

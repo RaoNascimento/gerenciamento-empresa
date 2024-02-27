@@ -72,12 +72,13 @@ public class EmpresaController implements SwaggerEmpresaController {
 
 	@DeleteMapping(value = "/strella-empresa", produces = APPLICATION_JSON_VALUE)
 	public ResponseEntity<RootEmpresaDTO>deletarEmpresa(@RequestParam(name = "id", required = true) Long id){
+
 		EmpresaInputDTO empresaInputDTO = new EmpresaInputDTO();
 		empresaInputDTO.setId(id);
 
 		empresaUseCase.deletarEmpresa(EmpresaMapper.INSTANCE.empresaInputDTOToEmpresa(empresaInputDTO));
 
-		var rootEmpresa = new RootEmpresaDTO(empresaInputDTO.getId(), OK);
+		var rootEmpresa = new RootEmpresaDTO(null, OK);
 		return ResponseEntity.ok().body(rootEmpresa);
 	}
 }
