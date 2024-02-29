@@ -9,10 +9,10 @@
 		<relativePath/>
 	</parent>
 
-	<groupId>br.com.strella.srv.empresas</groupId>
-	<artifactId>strella-srv-empresas</artifactId>
+	<groupId>br.com.strella.api.empresas</groupId>
+	<artifactId>strella-api-empresas</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>strella-srv-empresas</name>
+	<name>strella-api-empresas</name>
 	<description>gerenciamento da empresa</description>
 
 	<dependencies>

@@ -45,4 +45,5 @@ public class EmpresaUseCase implements IEmpresa {
 			throw new RuntimeException(e);
 		}
 	}
+
 }

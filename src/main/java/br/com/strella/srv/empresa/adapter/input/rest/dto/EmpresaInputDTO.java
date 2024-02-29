@@ -2,8 +2,6 @@ package br.com.strella.srv.empresa.adapter.input.rest.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.LocalDate;
-import net.bytebuddy.implementation.bind.annotation.Default;
-import org.mapstruct.Named;
 
 public class EmpresaInputDTO {
 	@JsonProperty("id")
@@ -23,6 +21,8 @@ public class EmpresaInputDTO {
 
 	@JsonProperty("idLogo")
 	private Long idLogo;
+	@JsonProperty("idUsuario")
+	private Long idUsuario;
 
 	public Long getId() {
 		return id;
@@ -72,6 +72,14 @@ public class EmpresaInputDTO {
 		this.idLogo = idLogo;
 	}
 
+	public Long getIdUsuario() {
+		return idUsuario;
+	}
+
+	public void setIdUsuario(Long idUsuario) {
+		this.idUsuario = idUsuario;
+	}
+
 	public EmpresaInputDTO(Long id, String urlAcesso, String usuUltAlteracao, LocalDate dataAtualizacao,
 		Long idPlanoEmpresa, Long idLogo) {
 		this.id = id;
@@ -81,6 +89,18 @@ public class EmpresaInputDTO {
 		this.idPlanoEmpresa = idPlanoEmpresa;
 		this.idLogo = idLogo;
 	}
+
+	public EmpresaInputDTO(Long id, String urlAcesso, String usuUltAlteracao, LocalDate dataAtualizacao,
+		Long idPlanoEmpresa, Long idLogo, Long idUsuario) {
+		this.id = id;
+		this.urlAcesso = urlAcesso;
+		this.usuUltAlteracao = usuUltAlteracao;
+		this.dataAtualizacao = dataAtualizacao;
+		this.idPlanoEmpresa = idPlanoEmpresa;
+		this.idLogo = idLogo;
+		this.idUsuario = idUsuario;
+	}
+
 	public EmpresaInputDTO() {
 	}
 

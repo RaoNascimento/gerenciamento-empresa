@@ -1,16 +1,16 @@
-package br.com.strella.srv.empresa.adapter.output.repository;
+package br.com.strella.srv.empresa.adapter.output;
 
+import br.com.strella.srv.empresa.adapter.output.repository.EmpresaRepository;
+import br.com.strella.srv.empresa.adapter.output.repository.EmpresaSpecification;
 import br.com.strella.srv.empresa.adapter.output.repository.dto.EmpresaOutputDTO;
 import br.com.strella.srv.empresa.adapter.output.repository.dto.mapper.EmpresaMapperOutput;
 import br.com.strella.srv.empresa.domain.entity.Empresa;
 import br.com.strella.srv.empresa.domain.exception.ArquivoNotFoudException;
 import br.com.strella.srv.empresa.port.output.IEmpresaPort;
 import java.util.List;
-import java.util.logging.Logger;
-import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
-import org.springframework.boot.actuate.autoconfigure.health.HealthEndpointProperties.Logging;
 import org.springframework.data.domain.Pageable;
+import org.springframework.transaction.annotation.Transactional;
 
 public class EmpresaAdapter implements IEmpresaPort {
 	private final EmpresaRepository empresaRepository;
@@ -24,16 +24,17 @@ public class EmpresaAdapter implements IEmpresaPort {
 	@Override
 	public Empresa cadastrarEmpresa(Empresa empresa) {
 		EmpresaOutputDTO empresaOutputDTO = EmpresaMapperOutput.INSTANCE.empresaToEmpresaOutputDTO(empresa);
-		empresaRepository.save(empresaOutputDTO);
+		empresaRepository.saveAndFlush(empresaOutputDTO);
 
 		return EmpresaMapperOutput.INSTANCE.empresaOutputDTOToEmpresa(empresaOutputDTO) ;
 	}
 
 	@Override
+	@Transactional
 	public Empresa editarEmpresa(Empresa empresa) {
 		EmpresaOutputDTO empresaOutputDTO = EmpresaMapperOutput.INSTANCE.empresaToEmpresaOutputDTO(empresa);
 
-		return EmpresaMapperOutput.INSTANCE.empresaOutputDTOToEmpresa(empresaRepository.save(empresaOutputDTO));
+		return EmpresaMapperOutput.INSTANCE.empresaOutputDTOToEmpresa(empresaRepository.saveAndFlush(empresaOutputDTO));
 	}
 
 	@Override
@@ -57,9 +58,5 @@ public class EmpresaAdapter implements IEmpresaPort {
 		} catch (HibernateException exception) {
 			throw new Exception();
 		}
-
-
 	}
-
-
 }

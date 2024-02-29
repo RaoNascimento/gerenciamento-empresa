@@ -3,6 +3,7 @@ package br.com.strella.srv.empresa.domain.entity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 import net.bytebuddy.implementation.bind.annotation.Default;
 
 
@@ -19,6 +20,8 @@ public class Empresa implements Serializable {
 	private Long idPlanoEmpresa;
 
 	private Long idLogo;
+	private Long idUsuario;
+
 
 	public Long getId() {
 		return id;
@@ -68,22 +71,32 @@ public class Empresa implements Serializable {
 		this.idLogo = idLogo;
 	}
 
-//	public Empresa(Long id, String urlAcesso, String usuUltAlteracao, LocalDate dataAtualizacao,
-//		Long idPlanoEmpresa, Long idLogo) {
-//		this.id = id;
-//		this.urlAcesso = urlAcesso;
-//		this.usuUltAlteracao = usuUltAlteracao;
-//		this.dataAtualizacao = dataAtualizacao;
-//		this.idPlanoEmpresa = idPlanoEmpresa;
-//		this.idLogo = idLogo;
-//	}
+	public Long getIdUsuario() {
+		return idUsuario;
+	}
 
-	public Empresa(Long id, String urlAcesso, Long idPlanoEmpresa, Long idLogo) {
+	public void setIdUsuario(Long idUsuario) {
+		this.idUsuario = idUsuario;
+	}
+
+	public Empresa(Long id, String urlAcesso, String usuUltAlteracao, LocalDate dataAtualizacao,
+		Long idPlanoEmpresa, Long idLogo, Long idUsuario) {
+		this.id = id;
+		this.urlAcesso = urlAcesso;
+		this.usuUltAlteracao = usuUltAlteracao;
+		this.dataAtualizacao = dataAtualizacao;
+		this.idPlanoEmpresa = idPlanoEmpresa;
+		this.idLogo = idLogo;
+		this.idUsuario = idUsuario;
+	}
+	public Empresa(Long id, String urlAcesso,
+		Long idPlanoEmpresa, Long idLogo) {
 		this.id = id;
 		this.urlAcesso = urlAcesso;
 		this.idPlanoEmpresa = idPlanoEmpresa;
 		this.idLogo = idLogo;
 	}
+
 	public Empresa(Long id){
 		this.id = id;
 	}
@@ -91,5 +104,6 @@ public class Empresa implements Serializable {
 	public Empresa() {
 
 	}
+
 }
 

@@ -6,6 +6,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import br.com.strella.srv.empresa.adapter.dto.mapper.EmpresaMapper;
 import br.com.strella.srv.empresa.adapter.input.rest.dto.EmpresaInputDTO;
 import br.com.strella.srv.empresa.adapter.input.rest.dto.RootEmpresaDTO;
+import br.com.strella.srv.empresa.adapter.input.rest.swagger.SwaggerEmpresaController;
 import br.com.strella.srv.empresa.port.input.IEmpresa;
 import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
