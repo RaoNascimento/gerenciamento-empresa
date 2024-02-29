@@ -2,6 +2,7 @@ package br.com.strella.srv.empresa.adapter.dto.mapper;
 
 import br.com.strella.srv.empresa.adapter.input.rest.dto.UsuarioInputDTO;
 import br.com.strella.srv.empresa.domain.entity.Usuario;
+import java.util.List;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
@@ -12,4 +13,5 @@ public interface UsuarioMapper {
 	Usuario usuarioInputDTOToUsuario(UsuarioInputDTO usuarioInputDTO);
 
 	UsuarioInputDTO usuarioToUsuarioInputDTO(Usuario cadastrarUsuario);
+	List<UsuarioInputDTO> listUsuarioToUsuarioInputDTO(List<Usuario> usuario);
 }

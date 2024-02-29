@@ -29,6 +29,17 @@ public class UsuarioInputDTO {
 	@JsonProperty("idEmpresa")
 	private Long idEmpresa;
 
+	public UsuarioInputDTO(String nome, String ultimoNome, String email, LocalDate dataNascimento, String idGoogle, LocalDate dataAtualizacao, Long idEmpresa) {
+	this.nome = nome;
+	this.ultimoNome = ultimoNome;
+	this.email = email;
+	this.dataNascimento = dataNascimento;
+	this.idGoogle = idGoogle;
+	this.dataAtualizacao = dataAtualizacao;
+	this.idEmpresa = idEmpresa;
+
+	}
+
 
 	public Long getId() {
 		return id;
