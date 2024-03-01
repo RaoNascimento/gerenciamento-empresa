@@ -6,6 +6,7 @@ import br.com.strella.srv.empresa.adapter.output.repository.dto.EmpresaOutputDTO
 import br.com.strella.srv.empresa.adapter.output.repository.dto.mapper.EmpresaMapperOutput;
 import br.com.strella.srv.empresa.domain.entity.Empresa;
 import br.com.strella.srv.empresa.domain.exception.ArquivoNotFoudException;
+import br.com.strella.srv.empresa.domain.exception.BusinessException;
 import br.com.strella.srv.empresa.port.output.IEmpresaPort;
 import java.util.List;
 import org.hibernate.HibernateException;
@@ -54,9 +55,8 @@ public class EmpresaAdapter implements IEmpresaPort {
 			else
 				throw new ArquivoNotFoudException("404", "empresa nao encontrada");
 
-
 		} catch (HibernateException exception) {
-			throw new Exception();
+			throw new BusinessException("500", "erro inesperado");
 		}
 	}
 }

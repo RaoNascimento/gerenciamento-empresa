@@ -37,5 +37,22 @@ private final IUsuarioPort usuarioAdapter;
 		return this.usuarioAdapter.listarUsuario(filtrosSelecionados, pageable);
 	}
 
+	@Override
+	public Usuario editarEmpresa(Usuario usuario) {
+		return usuarioAdapter.editarUsuario(usuario);
+	}
+
+	@Override
+	public void deletarUsuario(Usuario usuario) {
+		try {
+			usuarioAdapter.deletarUsuario(usuario);
+
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+
+
+	}
+
 
 }

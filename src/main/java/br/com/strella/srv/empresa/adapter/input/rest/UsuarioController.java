@@ -3,7 +3,10 @@ package br.com.strella.srv.empresa.adapter.input.rest;
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
+import br.com.strella.srv.empresa.adapter.dto.mapper.EmpresaMapper;
 import br.com.strella.srv.empresa.adapter.dto.mapper.UsuarioMapper;
+import br.com.strella.srv.empresa.adapter.input.rest.dto.EmpresaInputDTO;
+import br.com.strella.srv.empresa.adapter.input.rest.dto.RootEmpresaDTO;
 import br.com.strella.srv.empresa.adapter.input.rest.dto.RootUsuarioDTO;
 import br.com.strella.srv.empresa.adapter.input.rest.dto.UsuarioInputDTO;
 import br.com.strella.srv.empresa.port.input.IUsuario;
@@ -13,8 +16,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -61,5 +66,29 @@ public class UsuarioController {
 
 		return ResponseEntity.status(OK).body(response);
 
+	}
+
+	@PutMapping(value = "/strella-usuario", produces = APPLICATION_JSON_VALUE)
+	public ResponseEntity<RootUsuarioDTO> editarUsuario(@RequestBody UsuarioInputDTO usuarioInputDto){
+		var usu = UsuarioMapper.INSTANCE.usuarioInputDTOToUsuario(usuarioInputDto);
+		var retornoConsulta = usuarioUseCase.editarEmpresa(usu);
+
+		var response = UsuarioMapper.INSTANCE.usuarioToUsuarioInputDTO(retornoConsulta);
+		var rootEmpresa = new RootUsuarioDTO(Arrays.asList(response), HttpStatus.CREATED);
+
+		return ResponseEntity.status(HttpStatus.CREATED).body(rootEmpresa);
+	}
+
+	@DeleteMapping(value = "/strella-usuario", produces = APPLICATION_JSON_VALUE)
+	public ResponseEntity<RootUsuarioDTO>deletarUsuario(@RequestParam(name = "id", required = true) Long id)
+		throws Exception {
+
+		UsuarioInputDTO usuarioInputDTO = new UsuarioInputDTO();
+		usuarioInputDTO.setId(id);
+
+		usuarioUseCase.deletarUsuario(UsuarioMapper.INSTANCE.usuarioInputDTOToUsuario(usuarioInputDTO));
+
+		var rootUsuario = new RootUsuarioDTO(null, OK);
+		return ResponseEntity.ok().body(rootUsuario);
 	}
 }

@@ -136,4 +136,9 @@ public class UsuarioInputDTO {
 	public void setIdEmpresa(Long idEmpresa) {
 		this.idEmpresa = idEmpresa;
 	}
+
+
+	public UsuarioInputDTO() {
+
+	}
 }
