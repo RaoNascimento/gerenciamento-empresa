@@ -1,4 +1,4 @@
-package br.com.strella.srv.empresa.adapter.output;
+package br.com.strella.srv.empresa.adapter.output.adapter;
 
 import br.com.strella.srv.empresa.adapter.output.repository.UsuarioRepository;
 import br.com.strella.srv.empresa.adapter.output.repository.UsuarioSpecification;
@@ -52,7 +52,7 @@ public class UsuarioAdapter implements IUsuarioPort{
 			if(usuarioRepository.existsById(usuario.getId()))
 				usuarioRepository.delete(usuarioOutputDTO);
 			else
-				throw new ArquivoNotFoudException("404", "usuario nao encontrada");
+				throw new ArquivoNotFoudException("404", "usuario nao encontrado");
 
 		} catch (HibernateException exception) {
 			throw new BusinessException("500", "erro inesperado");
