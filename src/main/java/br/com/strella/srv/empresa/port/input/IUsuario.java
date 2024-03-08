@@ -11,5 +11,5 @@ public interface IUsuario {
 
 	Usuario editarEmpresa(Usuario empresa);
 
-	public void deletarUsuario(Usuario usuario) throws Exception;
+	public void deletarUsuario(Long usuario) throws Exception;
 }

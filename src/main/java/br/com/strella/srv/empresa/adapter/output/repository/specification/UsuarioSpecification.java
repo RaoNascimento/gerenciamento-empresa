@@ -1,4 +1,4 @@
-package br.com.strella.srv.empresa.adapter.output.repository;
+package br.com.strella.srv.empresa.adapter.output.repository.specification;
 
 import br.com.strella.srv.empresa.adapter.output.repository.dto.UsuarioOutputDTO;
 import javax.persistence.criteria.CriteriaBuilder;

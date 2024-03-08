@@ -11,15 +11,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Setter
 @Entity
-@Table(name="usuario")
-public class UsuarioOutputDTO implements Serializable {
-	private static final long serialVersionUID = 1l;
+@Table(name="profissional")
+public class ProfissionalOutputDTO implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@JsonProperty("id")
@@ -31,32 +28,30 @@ public class UsuarioOutputDTO implements Serializable {
 	@JsonProperty("ultimoNome")
 	@Column(name = "ultimo_nome")
 	private String ultimoNome;
-	@JsonProperty("email")
-	@Column(name = "email")
-	private String email;
 	@JsonProperty("telefone")
 	@Column(name = "telefone")
 	private String telefone;
-	@JsonProperty("dataNascimento")
-	@Column(name = "data_nascimento")
-	private LocalDate dataNascimento;
-	@JsonProperty("idGoogle")
-	@Column(name = "id_google")
-	private String idGoogle;
+	@JsonProperty("email")
+	@Column(name = "email")
+	private String email;
+	@JsonProperty("identificacao")
+	@Column(name = "identificacao")
+	private String identificacao;
 	@JsonProperty("perfilAcesso")
-	@Column(name = "perfil_acesso")
+	@Column(name = "perfilAcesso")
 	private int perfilAcesso;
-	@JsonProperty("perguntaRecuperacao")
-	@Column(name = "pergunta_recuperacao")
-	private String perguntaRecuperacao;
-	@JsonProperty("usuUltimaAlteracao")
-	@Column(name = "usu_ultima_alteracao")
-	private String usuUltimaAlteracao;
+	@JsonProperty("usuUltAlteracao")
+	@Column(name = "usu_ult_alteracao")
+	private String usuUltAlteracao;
 	@JsonProperty("dataAtualizacao")
 	@Column(name = "data_atualizacao")
 	private LocalDate dataAtualizacao;
-	//@ManyToMany(mappedBy = "empresas")
-	private Long idEmpresa;
+	@JsonProperty("idUsuario")
+	@Column(name = "id_usuario")
+	private Long idUsuario;
+	@JsonProperty("idImgStrella")
+	@Column(name = "id_img_strella")
+	private Long idImgStrella;
 
 	public Long getId() {
 		return id;
@@ -82,14 +77,6 @@ public class UsuarioOutputDTO implements Serializable {
 		this.ultimoNome = ultimoNome;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
 	public String getTelefone() {
 		return telefone;
 	}
@@ -98,20 +85,20 @@ public class UsuarioOutputDTO implements Serializable {
 		this.telefone = telefone;
 	}
 
-	public LocalDate getDataNascimento() {
-		return dataNascimento;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setDataNascimento(LocalDate dataNascimento) {
-		this.dataNascimento = dataNascimento;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public String getIdGoogle() {
-		return idGoogle;
+	public String getIdentificacao() {
+		return identificacao;
 	}
 
-	public void setIdGoogle(String idGoogle) {
-		this.idGoogle = idGoogle;
+	public void setIdentificacao(String identificacao) {
+		this.identificacao = identificacao;
 	}
 
 	public int getPerfilAcesso() {
@@ -122,20 +109,12 @@ public class UsuarioOutputDTO implements Serializable {
 		this.perfilAcesso = perfilAcesso;
 	}
 
-	public String getPerguntaRecuperacao() {
-		return perguntaRecuperacao;
+	public String getUsuUltAlteracao() {
+		return usuUltAlteracao;
 	}
 
-	public void setPerguntaRecuperacao(String perguntaRecuperacao) {
-		this.perguntaRecuperacao = perguntaRecuperacao;
-	}
-
-	public String getUsuUltimaAlteracao() {
-		return usuUltimaAlteracao;
-	}
-
-	public void setUsuUltimaAlteracao(String usuUltimaAlteracao) {
-		this.usuUltimaAlteracao = usuUltimaAlteracao;
+	public void setUsuUltAlteracao(String usuUltAlteracao) {
+		this.usuUltAlteracao = usuUltAlteracao;
 	}
 
 	public LocalDate getDataAtualizacao() {
@@ -146,11 +125,19 @@ public class UsuarioOutputDTO implements Serializable {
 		this.dataAtualizacao = dataAtualizacao;
 	}
 
-	public Long getIdEmpresa() {
-		return idEmpresa;
+	public Long getIdUsuario() {
+		return idUsuario;
 	}
 
-	public void setIdEmpresa(Long idEmpresa) {
-		this.idEmpresa = idEmpresa;
+	public void setIdUsuario(Long idUsuario) {
+		this.idUsuario = idUsuario;
+	}
+
+	public Long getIdImgStrella() {
+		return idImgStrella;
+	}
+
+	public void setIdImgStrella(Long idImgStrella) {
+		this.idImgStrella = idImgStrella;
 	}
 }

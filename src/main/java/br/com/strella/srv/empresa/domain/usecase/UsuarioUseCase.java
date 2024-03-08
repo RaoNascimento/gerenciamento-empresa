@@ -43,7 +43,9 @@ private final IUsuarioPort usuarioAdapter;
 	}
 
 	@Override
-	public void deletarUsuario(Usuario usuario) {
+	public void deletarUsuario(Long id) {
+		Usuario usuario = new Usuario();
+		usuario.setId(id);
 		try {
 			usuarioAdapter.deletarUsuario(usuario);
 

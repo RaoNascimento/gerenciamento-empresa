@@ -8,5 +8,5 @@ public interface IEmpresa {
 	Empresa cadastrarEmpresa(Empresa empresa);
 	Empresa editarEmpresa(Empresa empresa);
 	List<Empresa> listarEmpresasViaFiltro(Long id, Long idLogo, String urlAcesso, Long idPlanoEmpresa, Pageable pageable);
-	void deletarEmpresa(Empresa id);
+	void deletarEmpresa(Long id);
 }

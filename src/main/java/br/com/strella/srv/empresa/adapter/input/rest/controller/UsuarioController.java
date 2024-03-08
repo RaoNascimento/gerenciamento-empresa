@@ -1,16 +1,14 @@
-package br.com.strella.srv.empresa.adapter.input.rest;
+package br.com.strella.srv.empresa.adapter.input.rest.controller;
 
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
-import br.com.strella.srv.empresa.adapter.dto.mapper.EmpresaMapper;
 import br.com.strella.srv.empresa.adapter.dto.mapper.UsuarioMapper;
-import br.com.strella.srv.empresa.adapter.input.rest.dto.EmpresaInputDTO;
-import br.com.strella.srv.empresa.adapter.input.rest.dto.RootEmpresaDTO;
-import br.com.strella.srv.empresa.adapter.input.rest.dto.RootUsuarioDTO;
+import br.com.strella.srv.empresa.adapter.input.rest.dto.RootRetornoDTO;
 import br.com.strella.srv.empresa.adapter.input.rest.dto.UsuarioInputDTO;
 import br.com.strella.srv.empresa.port.input.IUsuario;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -37,17 +35,17 @@ public class UsuarioController {
 	}
 
 	@PostMapping(value = "/strella-usuario", produces = APPLICATION_JSON_VALUE)
-	public ResponseEntity<RootUsuarioDTO> cadastrar(@RequestBody UsuarioInputDTO usuarioInputDto) throws Exception {
+	public ResponseEntity<RootRetornoDTO> cadastrar(@RequestBody UsuarioInputDTO usuarioInputDto) throws Exception {
 
 		var usuario = UsuarioMapper.INSTANCE.usuarioInputDTOToUsuario(usuarioInputDto);
 		var response = UsuarioMapper.INSTANCE.usuarioToUsuarioInputDTO(usuarioUseCase.cadastrarUsuario(usuario));
-		var rootUsuarioDto = new RootUsuarioDTO(Arrays.asList(response), HttpStatus.CREATED);
+		var rootUsuarioDto = new RootRetornoDTO(Arrays.asList(response), HttpStatus.CREATED);
 
 		return ResponseEntity.status(HttpStatus.CREATED).body(rootUsuarioDto);
 	}
 
 	@GetMapping(value = "/strella-usuario", produces = APPLICATION_JSON_VALUE)
-	public ResponseEntity<RootUsuarioDTO> listarPorParametros(
+	public ResponseEntity<RootRetornoDTO> listarPorParametros(
 		@RequestParam(name = "nome", required = false) String nome,
 		@RequestParam(name = "ultimoNome", required = false) String ultimoNome,
 		@RequestParam(name = "email", required = false) String email,
@@ -62,33 +60,26 @@ public class UsuarioController {
 		var filtros = UsuarioMapper.INSTANCE.usuarioInputDTOToUsuario(in);
 		var retornoConsulta = usuarioUseCase.listarUsuariosViaFiltro(filtros, PageRequest.of(page, size));
 
-		var response = new RootUsuarioDTO(UsuarioMapper.INSTANCE.listUsuarioToUsuarioInputDTO(retornoConsulta), OK);
+		var response = new RootRetornoDTO(UsuarioMapper.INSTANCE.listUsuarioToUsuarioInputDTO(retornoConsulta), OK);
 
 		return ResponseEntity.status(OK).body(response);
 
 	}
 
 	@PutMapping(value = "/strella-usuario", produces = APPLICATION_JSON_VALUE)
-	public ResponseEntity<RootUsuarioDTO> editarUsuario(@RequestBody UsuarioInputDTO usuarioInputDto){
+	public ResponseEntity<RootRetornoDTO> editarUsuario(@RequestBody UsuarioInputDTO usuarioInputDto){
 		var usu = UsuarioMapper.INSTANCE.usuarioInputDTOToUsuario(usuarioInputDto);
-		var retornoConsulta = usuarioUseCase.editarEmpresa(usu);
-
-		var response = UsuarioMapper.INSTANCE.usuarioToUsuarioInputDTO(retornoConsulta);
-		var rootEmpresa = new RootUsuarioDTO(Arrays.asList(response), HttpStatus.CREATED);
+		var response = UsuarioMapper.INSTANCE.usuarioToUsuarioInputDTO(usuarioUseCase.editarEmpresa(usu));
+		var rootEmpresa = new RootRetornoDTO(Arrays.asList(response), HttpStatus.CREATED);
 
 		return ResponseEntity.status(HttpStatus.CREATED).body(rootEmpresa);
 	}
 
 	@DeleteMapping(value = "/strella-usuario", produces = APPLICATION_JSON_VALUE)
-	public ResponseEntity<RootUsuarioDTO>deletarUsuario(@RequestParam(name = "id", required = true) Long id)
+	public ResponseEntity<RootRetornoDTO>deletarUsuario(@RequestParam(name = "id", required = true) Long id)
 		throws Exception {
+		usuarioUseCase.deletarUsuario(id);
 
-		UsuarioInputDTO usuarioInputDTO = new UsuarioInputDTO();
-		usuarioInputDTO.setId(id);
-
-		usuarioUseCase.deletarUsuario(UsuarioMapper.INSTANCE.usuarioInputDTOToUsuario(usuarioInputDTO));
-
-		var rootUsuario = new RootUsuarioDTO(null, OK);
-		return ResponseEntity.ok().body(rootUsuario);
+		return ResponseEntity.ok().body(new RootRetornoDTO(new ArrayList<UsuarioInputDTO>(),HttpStatus.NO_CONTENT));
 	}
 }

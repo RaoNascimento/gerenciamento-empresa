@@ -37,7 +37,9 @@ public class EmpresaUseCase implements IEmpresa {
 	}
 
 	@Override
-	public void deletarEmpresa(Empresa empresa) {
+	public void deletarEmpresa(Long id) {
+		Empresa empresa = new Empresa();
+		empresa.setId(id);
 		try {
 			empresaAdapter.deletarEmpresa(empresa);
 

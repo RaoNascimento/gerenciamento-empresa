@@ -129,5 +129,9 @@ public class Usuario {
 		this.dataAtualizacao = dataAtualizacao;
 		this.idEmpresa = idEmpresa;
 	}
+
+	public Usuario() {
+
+	}
 }
 

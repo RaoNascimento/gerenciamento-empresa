@@ -1,9 +1,10 @@
-package br.com.strella.srv.empresa.adapter.output.adapter;
+package br.com.strella.srv.empresa.adapter.output;
 
 import br.com.strella.srv.empresa.adapter.output.repository.UsuarioRepository;
-import br.com.strella.srv.empresa.adapter.output.repository.UsuarioSpecification;
+
 import br.com.strella.srv.empresa.adapter.output.repository.dto.UsuarioOutputDTO;
 import br.com.strella.srv.empresa.adapter.output.repository.dto.mapper.UsuarioMapperOutput;
+import br.com.strella.srv.empresa.adapter.output.repository.specification.UsuarioSpecification;
 import br.com.strella.srv.empresa.domain.entity.Usuario;
 import br.com.strella.srv.empresa.domain.exception.ArquivoNotFoudException;
 import br.com.strella.srv.empresa.domain.exception.BusinessException;

@@ -1,7 +1,8 @@
 package br.com.strella.srv.empresa.adapter.output.repository.dto.mapper;
 
-import br.com.strella.srv.empresa.adapter.output.repository.EmpresaSpecification;
+
 import br.com.strella.srv.empresa.adapter.output.repository.dto.EmpresaOutputDTO;
+import br.com.strella.srv.empresa.adapter.output.repository.specification.EmpresaSpecification;
 import br.com.strella.srv.empresa.domain.entity.Empresa;
 import java.util.List;
 import org.mapstruct.Mapper;

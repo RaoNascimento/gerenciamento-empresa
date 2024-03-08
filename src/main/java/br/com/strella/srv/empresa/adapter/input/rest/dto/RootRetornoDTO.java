@@ -2,16 +2,14 @@ package br.com.strella.srv.empresa.adapter.input.rest.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
-import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
 @NoArgsConstructor
-@AllArgsConstructor
-public class RootProfissionalDTO<T> {
+public class RootRetornoDTO<T> {
 	@JsonProperty("dados")
-	List<T> list;
+	private List<T> list;
 	@JsonProperty("codigo retorno")
-	HttpStatus httpStatus;
+	private HttpStatus httpStatus;
 
 	public List<T> getList() {
 		return list;
@@ -29,14 +27,8 @@ public class RootProfissionalDTO<T> {
 		this.httpStatus = httpStatus;
 	}
 
-	//	@JsonProperty("dados")
-//	public List<T> profissionalInputDTOList() {
-//		return profissionalInputDTOList;
-//	}
-//
-//	@Override
-//	@JsonProperty("codigo retorno")
-//	public HttpStatus httpStatus() {
-//		return httpStatus;
-//	}
+	public RootRetornoDTO(List<T> list, HttpStatus httpStatus) {
+		this.list = list;
+		this.httpStatus = httpStatus;
+	}
 }
